@@ -1,0 +1,70 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Bump chart: continent rank by average match duration (2015–2024).",
+  "autosize": {"type": "fit", "contains": "padding"},
+  "height": "container",
+  "width": "container",
+  "data": {
+    "url": "Tournaments_Winner_Years_Continent.csv",
+    "format": {"type": "csv"}
+  },
+  "transform": [
+    {"calculate": "substring(datum.tourney_date, 0, 4)", "as": "year"},
+    {"filter": "toNumber(datum.year) >= 2015 && toNumber(datum.year) <= 2024"},
+    {
+      "aggregate": [
+        {"op": "sum", "field": "minutes", "as": "minutes_sum"},
+        {"op": "count", "as": "matches"}
+      ],
+      "groupby": ["year", "Continent"]
+    },
+    {"calculate": "datum.minutes_sum / datum.matches", "as": "avg_minutes"},
+    {
+      "window": [{"op": "rank", "as": "rank"}],
+      "sort": [{"field": "avg_minutes", "order": "descending"}],
+      "groupby": ["year"]
+    }
+  ],
+
+  "params": [
+    {
+      "name": "continentSel",
+      "select": {"type": "point", "fields": ["Continent"]},
+      "bind": "legend"
+    }
+  ],
+
+  "mark": {"type": "line", "point": true},
+
+  "encoding": {
+    "x": {"field": "year", "type": "ordinal", "title": "Year"},
+    "y": {
+      "field": "rank",
+      "type": "quantitative",
+      "title": "Rank (1 = Longest Average Duration)",
+      "scale": {"domain": [1, 6], "reverse": true, "nice": false},
+      "axis": {"values": [1, 2, 3, 4, 5, 6]}
+    },
+    "color": {"field": "Continent", "type": "nominal", "title": "Continent", "scale": {
+        "domain": ["Africa","Asia","Europe","North America","Oceania","South America"],
+        "range":  ["#32292F","#6D3D14","#61988E","#8E7C93","#705D56","#1D3461"]  
+      }},
+    "opacity": {
+      "condition": {"param": "continentSel", "value": 1},
+      "value": 0
+    },
+    "strokeWidth": {
+      "condition": {"param": "continentSel", "value": 3},
+      "value": 1.5
+    },
+    "order": {"field": "year", "type": "ordinal"},
+    "tooltip": [
+      {"field": "Continent", "type": "nominal"},
+      {"field": "matches", "type": "quantitative", "title": "Matches"},
+      {"field": "avg_minutes", "type": "quantitative", "title": "Average Minutes", "format": ".1f"},
+      {"field": "year", "type": "ordinal", "title": "Year"}
+    ]
+  },
+
+  "title": {"text": "Continents Ranked by Average Match Duration", "dy": -20}
+}

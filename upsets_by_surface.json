@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Stacked counts of Expected vs Upset by Surface",
+  "width": "container",
+  "height": 520,
+  "data": {
+    "url": "atp_tournaments_2024 copy.csv",
+    "format": { "type": "csv" }
+  },
+  "transform": [
+    { "calculate": "toNumber(datum.WRank)", "as": "WRank_num" },
+    { "calculate": "toNumber(datum.LRank)", "as": "LRank_num" },
+    { "filter": "isFinite(datum.WRank_num) && isFinite(datum.LRank_num)" },
+
+    {
+      "calculate": "datum.WRank_num > datum.LRank_num ? 'Upset' : (datum.WRank_num < datum.LRank_num ? 'Expected' : 'Tie')",
+      "as": "Outcome"
+    },
+    { "filter": "datum.Outcome != 'Tie'" },
+
+    {
+      "aggregate": [{ "op": "count", "as": "match_count" }],
+      "groupby": ["Surface", "Outcome"]
+    }
+  ],
+  "mark": { "type": "bar", "tooltip": true },
+  "encoding": {
+    "x": {
+      "field": "Surface",
+      "type": "nominal",
+      "title": "Surface",
+      "axis": { "labelAngle": -15 }
+    },
+    "y": {
+      "field": "match_count",
+      "type": "quantitative",
+      "title": "Matches"
+    },
+    "color": {
+      "field": "Outcome",
+      "type": "nominal",
+      "sort": ["Expected", "Upset"],
+      "scale": { "range": ["#6baed6", "#ef8a62"] },
+      "title": "Outcome"
+    },
+    "order": { "field": "Outcome", "type": "nominal", "sort": ["Expected", "Upset"] },
+    "tooltip": [
+      { "field": "Surface", "title": "Surface" },
+      { "field": "Outcome", "title": "Outcome" },
+      { "field": "match_count", "title": "Matches" }
+    ]
+  },
+  "config": {
+    "view": { "stroke": null },
+    "axis": { "labelFontSize": 12, "titleFontSize": 13 }
+  }
+}

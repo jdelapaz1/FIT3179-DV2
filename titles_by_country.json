@@ -1,0 +1,80 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "ATP titles by country per year with hover highlight and click selection.",
+  "autosize": {"type": "fit", "contains": "padding"},
+  "width": "container",
+  "height": "container",
+  "data": {
+    "url": "Tournaments_Winner_Years.csv",
+    "format": {"type": "csv"}
+  },
+
+  "transform": [
+    {"filter": "datum.round == 'F'"},
+    { "calculate": "substring(datum.tourney_date, 0, 4)", "as": "year" },
+    {
+      "aggregate": [{"op": "count", "as": "titles_won"}],
+      "groupby": ["year", "Country"]
+    }
+  ],
+
+  "params": [
+    {
+      "name": "yearSelection",
+      "value": 2015,
+      "bind": {"input": "range", "min": 2015, "max": 2024, "step": 1, "name": "Select Year: "}
+    },
+    { "name": "highlight", "select": {"type": "point", "on": "pointerover"} },
+    { "name": "select", "select": "point" }
+  ],
+
+  "transform": [
+    {"filter": "datum.round == 'F'"},
+    { "calculate": "substring(datum.tourney_date, 0, 4)", "as": "year" },
+    {
+      "aggregate": [{"op": "count", "as": "titles_won"}],
+      "groupby": ["year", "Country"]
+    },
+    { "filter": "datum.year == yearSelection" }
+  ],
+
+  "mark": { "type": "bar", "fill": "#B7AAA0", "stroke": "black" },
+
+  "encoding": {
+    "x": {
+      "field": "Country",
+      "type": "nominal",
+      "sort": "-y",
+      "axis": {"title": "Country", "labelAngle": -45}
+    },
+    "y": {
+      "field": "titles_won",
+      "type": "quantitative",
+      "title": "Titles Won"
+    },
+
+    "fillOpacity": {
+      "condition": {"param": "select", "value": 1},
+      "value": 0.3
+    },
+    "strokeWidth": {
+      "condition": [
+        { "param": "select", "empty": false, "value": 2 },
+        { "param": "highlight", "empty": false, "value": 1 }
+      ],
+      "value": 0
+    },
+
+    "tooltip": [
+      {"field": "Country", "type": "nominal"},
+      {"field": "titles_won", "type": "quantitative", "title": "Titles"},
+      {"field": "year", "type": "ordinal", "title": "Year"}
+    ]
+  },
+
+  "title": "ATP Titles By Country",
+
+  "config": {
+    "scale": { "bandPaddingInner": 0.2 }
+  }
+}

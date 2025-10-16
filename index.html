@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tennis: A Truly Global Sport</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.2.0/build/pure-min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.2.0/build/grids-responsive-min.css" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@700&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+  :root{
+    --card-bg:#fff;
+    --text:#1f2937;
+    --radius:16px;
+    --shadow:0 0 30px rgba(0,0,0,.05);
+    --maxw:1200px;
+  }
+
+  body{
+    background-color:#463734;
+    margin:0;
+    font-family:"Inter","Helvetica Neue",Arial,sans-serif;
+    line-height:1.6;
+    color:var(--text);
+  }
+
+  .hero{
+    max-width:var(--maxw);
+    margin:80px auto;
+    background:#fff;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:40px 32px;
+    text-align:center;
+  }
+  .page-title{
+    font-family:"Archivo Black",sans-serif;
+    font-size:3rem;
+    letter-spacing:.5px;
+    margin:0 0 16px;
+    color:#111;
+    text-transform:uppercase;
+  }
+  .page-subtitle{
+    max-width:920px;
+    margin:0 auto;
+    font-size:1.05rem;
+    line-height:1.7;
+    color:#3b3b3b;
+    font-weight:500;
+  }
+
+  .content{
+    max-width:var(--maxw);
+    margin:80px auto;
+    padding:35px 2rem 3rem;
+    background:#fff;
+    border-radius:var(--radius);
+    margin-top:0;
+  }
+
+  .chart{width:100%;height:420px;}
+  .vega-actions{display:none!important;}
+
+  .pure-g{align-items:center;}
+
+  h2{
+    text-align:left;
+    font-weight:bold;
+  }
+
+  .subhero{
+    max-width:var(--maxw);
+    margin:auto;
+    background:#fff;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:5px 32px;
+    text-align:left;
+    margin-bottom:.5rem;
+  }
+
+    input[type="range"] {
+    accent-color: #B7AAA0; 
+  }
+
+  input[type="range"]::-moz-progress-bar {
+    background-color: white;
+  }
+
+  body {
+    font-family: "Source Sans 3", Arial, sans-serif;
+  }
+  .page-title, h1, h2 {
+    font-family: "Bebas Neue", sans-serif;
+    letter-spacing: 1px;
+    color: black
+  }
+</style>
+
+</head>
+<body>
+  <header class="hero">
+    <h1 class="page-title">Tennis: A Truly Global Sport</h1>
+    <p class="page-subtitle">
+      Few sports capture the spirit of global connection quite like tennis. 
+      Played on every continent and followed by millions, it transcends geography, culture, and language. 
+      This interactive poster aims to highlight the largely diverse and international nature of the sport we love.
+    </p>
+  </header>
+
+  <header class="subhero">
+    <h1 class="header">
+      An Introduction To Professional Tennis
+    </h1>
+  </header>
+
+
+  <main class="content">
+    <div class="pure-g" style="align-items: stretch;">
+      <div class="pure-u-1 pure-u-md-1-2" style="display:flex; flex-direction:column; align-items:left; text-align:justify;">
+        <p style="padding: 1rem;">
+          Professional men’s tennis is a global sport governed by the <strong>Association of Tennis Professionals (ATP)</strong>, which oversees the structure, 
+          rankings, and organisation of tournaments across the world. Founded in 1972, the ATP was created to represent the interests of male 
+          players and to ensure consistency and professionalism throughout the men’s game. Today, the ATP manages the ATP Tour, which features the 
+          world’s best players competing for ranking points, prize money, and prestige. 
+        </p>
+        <div style="display: flex; justify-content: center;">
+          <img src="ATP_Tour_logo.svg" style="width: 100%; height: 87%;">
+        </div>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-2" style="display:flex; flex-direction:column; align-items:left; text-align:justify;">
+        <p style="padding: 1rem;">
+          The professional tennis landscape is divided into several tiers. At the top sits the ATP Tour, consisting of Grand Slam tournaments 
+          (run by the International Tennis Federation but awarding ATP points), ATP Masters 1000, ATP 500, and ATP 250 events. Beneath this are the 
+          ATP Challenger Tour and the ITF Futures Circuit, which serve as developmental levels for rising players aiming to break into the top ranks.
+          <br>
+          <br>
+          In this visualisation, we focus exclusively on the ATP Tour, showcasing the distribution of professional male players competing at the sport’s 
+          highest level. As of recent seasons, <strong>over 2,000 players</strong> are ranked in the official ATP standings, representing more than <strong>100 countries</strong> worldwide. 
+          These athletes compete not only for ranking points but also for substantial prize pools, with total annual ATP prize money exceeding <strong>$200 million</strong> across all tournaments.
+          <br>
+          <br>
+          This analysis explores the geographical spread of ATP players, highlighting where the world’s top talent originates and how global the sport has become. By mapping players’ 
+          nationalities and rankings, we can gain insight into tennis’s international reach, the dominance of certain regions, and the ever-evolving landscape of professional men’s tennis.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <header class="subhero">
+    <h1 class="header">
+      The Global Picture
+    </h1>
+  </header>
+
+  <main class="content">
+    <h2>Countries Represented In Professional Tennis</h2>
+    <div id="map_players" class="chart"></div>
+    <div class="pure-g" style="align-items: stretch;">
+      <div class="pure-u-1 pure-u-md-1-2" style="display:flex; align-items:flex-start;">
+        <p style="padding-left: 1rem;">
+          This choropleth map above illustrates the global distribution of ATP-ranked men’s tennis players, revealing a clear concentration of professional talent in specific regions over the last 30 years. 
+          The <strong style="color: #8E7C93">United States</strong>, <strong style="color:#61988E">Western Europe</strong>, and <strong style="color:#705D56">Australia</strong> stand out with the darkest shades, indicating the highest numbers of players. This reflects regions with long-standing tennis 
+          traditions, advanced training systems, and strong domestic tournament structures that feed into the professional circuit. Nations such as <strong style="color:#61988E">France, Spain, Italy, and Germany</strong> dominate 
+          within <strong style="color:#61988E">Europe</strong>, while <strong style="color: #1D3461">Argentina</strong> emerges as <strong style="color: #1D3461">South America’s</strong> main contributor, consistent with its rich clay-court culture. These regions not only produce large numbers of ATP players 
+          but also host a significant portion of the ATP Tour events, reinforcing their central 
+        </p>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-2" style="display:flex; align-items:flex-start;">
+        <p style="padding-left: 1rem;">
+          role in global men’s tennis. Conversely, the map highlights notable disparities in representation across other parts of the world. Most of <strong style="color: #32292F">Africa</strong> and <strong style="color: #6D3D14">Central Asia</strong> are barely shaded, indicating very 
+          few or no ATP-ranked players, while <strong style="color: #6D3D14">Asia’s</strong> tennis powerhouses, such as <strong style="color: #6D3D14">Japan, China, and India</strong>, have comparatively modest figures despite their vast populations. This 
+          uneven distribution underscores how economic resources, infrastructure, and access to international competition shape the pathways into professional tennis. Overall, the visualization 
+          communicates how men’s tennis remains concentrated in economically developed regions with strong sporting infrastructure, while emerging markets continue to face structural barriers 
+          to producing players at the ATP level.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <header class="subhero">
+    <h1 class="header">
+      A Deep-Dive Into Performance
+    </h1>
+  </header>
+
+  <main class="content">
+    <h2>Most Successful Tennis Nations</h2>
+    <div class="pure-g" style="align-items: stretch; margin-bottom: 5rem;">
+      <div class="pure-u-1 pure-u-md-1-2" style="display:flex; align-items:flex-start;">
+        <div id="matches_played_vs_won" class="chart"></div>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-2" style="display:flex; align-items:flex-start;">
+        <p>
+          This scatterplot shows the relationship between the total matches played and the average win percentage of ATP-ranked players by country, with colors representing continents. 
+          The data reveals a clear dominance of traditional tennis nations, particularly <strong style="color:#61988E">European</strong> countries like <strong style="color:#61988E">Spain, France, and Serbia</strong>, along with the <strong style="color: #8E7C93">United States</strong> and <strong style="color:#705D56">Australia</strong>. 
+          These nations combine large player pools, strong competitive systems, and long-standing tennis cultures that support consistent international success.
+          <br>
+          <br>
+          By contrast, most countries from <strong style="color: #32292F">Africa</strong>, <strong style="color: #6D3D14">Asia</strong>, and <strong style="color: #1D3461">South America</strong> cluster in the lower-left, reflecting fewer matches and lower win percentages. This highlights persistent regional 
+          inequalities in training access, infrastructure, and tournament opportunities. Although countries like Argentina achieve strong results relative to their size, global men’s tennis 
+          remains centered around <strong style="color:#61988E">Europe</strong> and other developed regions, where resources and professional pathways are more established.
+        </p>
+      </div>
+    </div>
+    <div class="pure-g" style="align-items: stretch; margin-bottom: 5rem;">
+      <div class="pure-u-1 pure-u-md-1-2" style="display:flex; align-items:flex-start;">
+        <p>
+          This interactive bar chart reveals how different countries dominate ATP titles from year to year. The data shows a constantly shifting hierarchy among top tennis nations, with 
+          <strong style="color:#61988E">Spain</strong>, <strong style="color:#61988E">Italy</strong>, and the <strong style="color:#8E7C93">United States</strong> emerging as consistent 
+          leaders in recent seasons. Their high title counts reflect both depth of player talent and strong representation across ATP tournaments.
+          In years such as 2022, <strong style="color:#61988E">Spain</strong> and the <strong style="color:#8E7C93">U.S.</strong> clearly outperformed, while in 2024, 
+          <strong style="color:#61988E">Italy</strong> surged ahead, underscoring the rise of its younger generation of players on the tour.
+          <br>
+          <br>
+          Meanwhile, the middle tier of nations, including <strong style="color:#61988E">France</strong>, <strong style="color:#1D3461">Argentina</strong>, 
+          <strong style="color:#705D56">Australia</strong>, and <strong style="color:#61988E">Russia</strong>, maintain steady but more modest title totals, while smaller tennis 
+          nations only occasionally appear with one or two wins. These fluctuations demonstrate how shifts in player form, generational transitions, and national tennis programs influence the 
+          global competitive balance. Overall, the chart captures how tennis success remains dynamic and geographically diverse, yet still concentrated among a few powerhouse countries.
+
+        </p>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-2" style="display:flex; align-items:flex-start;">
+        <div id="titles_by_country" class="chart"></div>
+      </div>
+    </div>
+    <div class="pure-g" style="align-items: stretch; margin-bottom: 1rem;">
+      <div class="pure-u-1 pure-u-md-1-2" style="display:flex; align-items:flex-start;">
+        <div id="top10_by_country" class="chart"></div>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-2" style="display:flex; align-items:flex-start;">
+        <p>
+          This donut chart highlights how different countries have contributed to the pool of ATP players who have reached a Top 10 world ranking. The 
+          <strong style="color:#8E7C93">United States</strong> stands out with the highest number (19), reflecting its long-standing dominance and depth in men’s tennis. 
+          <strong style="color:#61988E">Spain</strong> (17) and <strong style="color:#61988E">Sweden</strong> (10) also feature prominently, consistent with their historical 
+          production of elite players and strong national tennis programs. These nations’ consistent representation in the Top 10 illustrates both tradition and infrastructure supporting 
+          player development at the highest level.
+          <br>
+          <br>
+          Meanwhile, countries such as <strong style="color:#61988E">France</strong>, <strong style="color:#61988E">Russia</strong>, and <strong style="color:#1D3461">Argentina</strong> 
+          also maintain a notable presence, though with slightly smaller totals. The diversity of nations represented, spanning <strong style="color:#61988E">Europe</strong>, 
+          <strong style="color:#1D3461">South America</strong>, and <strong style="color:#8E7C93">North America</strong>, emphasises tennis’ global competitiveness. However, the 
+          clear gap between the top countries and the rest underlines how only a handful of nations have managed to sustain a pipeline of players capable of reaching the sport’s elite tier.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <header class="subhero">
+    <h1 class="header">
+      Other Interesting Insights
+    </h1>
+  </header>
+
+  <main class="content">
+    <h2>Match Duration</h2>
+    <div id="ranking_match_duration" class="chart"></div>
+    <div class="pure-g" style="align-items: stretch; margin-bottom: 1rem;">
+      <div class="pure-u-1 pure-u-md-1-2" style="display:flex; align-items:flex-start;">
+        <p style="padding-left: 1rem;">
+          This bump chart highlights how the average match duration varies across continents from 2015 to 2024, revealing consistent regional playing-style patterns. 
+          <strong style="color:#6D3D14">Asia</strong> and <strong style="color:#8E7C93">North America</strong> tend to have the shortest match durations, ranking near 
+          the bottom across most years. This can largely be attributed to the surfaces players grow up on — hard courts — which dominate both regions, are faster, and produce 
+          shorter rallies due to lower bounce and quicker point construction. Matches on hard courts often reward aggressive baseline play and efficient serving, leading to 
+          fewer extended exchanges and shorter overall durations. In contrast, <strong style="color:#61988E">Europe</strong> and <strong style="color:#1D3461">South America</strong> 
+          consistently record longer match
+        </p>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-2" style="display:flex; align-items:flex-start;">
+        <p style="padding-left: 1rem;">
+          durations, reflecting their deep-rooted clay-court traditions. Clay courts are slower, with higher bounce and less reward for outright winners, forcing longer rallies and more strategic, 
+          grinding play styles. This naturally leads to extended matches, especially in tightly contested tournaments. Interestingly, <strong style="color:#705D56">Australia</strong> generally 
+          aligns with the faster-playing hard-court trend, but the country’s top player, Alex de Minaur, grew up training in <strong style="color:#61988E">Spain</strong>, a clay-court environment. 
+          His defensive, counter-punching style mirrors <strong style="color:#61988E">European</strong> clay specialists more than typical <strong style="color:#705D56">Australian</strong> 
+          hard-court players, which may slightly elevate <strong style="color:#705D56">Oceania’s</strong> average duration compared to what surface trends alone would predict.
+        </p>
+      </div>
+    </div>
+    <h2>Retirements/Walkovers</h2>
+    <div id="walkovers_retirements" class="chart"></div>
+    <div class="pure-g" style="align-items: stretch; margin-bottom: 1rem;">
+      <div class="pure-u-1 pure-u-md-1-2" style="display:flex; align-items:flex-start;">
+        <p style="padding-left: 1rem;">
+          In professional tennis, a retirement occurs when a player is forced to stop a match mid-play, typically due to injury, illness, or physical exhaustion, while a walkover happens 
+          when a player withdraws before a match begins, often for similar reasons or scheduling conflicts. Both cases result in the opponent advancing automatically, making these events 
+          indicators of the physical demands and attrition inherent in the ATP Tour.
+          <br>
+          <br>
+          This heatmap visualizes the number of retirements and walkovers across months 
+        </p>
+      </div>
+      <div class="pure-u-1 pure-u-md-1-2" style="display:flex; align-items:flex-start;">
+        <p style="padding-left: 1rem;">
+          and years from 2015 to 2025, revealing notable seasonal and temporal trends. Warmer colors indicate higher 
+          frequencies, with peaks often appearing during summer months (June–September) when the calendar is dense with major tournaments such as Wimbledon and the U.S. Open, leading to player fatigue. 
+          Some years, notably 2017, 2021, and 2024, show heightened activity, suggesting periods of increased player strain or particularly intense competition schedules. Overall, the data underscores 
+          how the sport’s grueling pace and year-round travel continue to test athletes’ endurance and recovery capacities.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <script src="vega_lite_vis.js"></script>
+</body>
+</html>

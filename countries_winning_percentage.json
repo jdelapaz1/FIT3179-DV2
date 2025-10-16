@@ -1,0 +1,29 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Winning percentage by country (countries with >2000 total matches)",
+  "width": "container",
+  "height": 520,
+  "data": {"url": "Players_joined_with_country_latitude_longitude.csv"},
+  "transform": [
+    {
+      "aggregate": [
+        {"op": "sum", "field": "match_wins", "as": "total_wins"},
+        {"op": "sum", "field": "matches_played", "as": "total_played"}
+      ],
+      "groupby": ["country"]
+    },
+    {"filter": "datum.total_played > 2000"},
+    {"calculate": "datum.total_wins / datum.total_played", "as": "win_pct"}
+  ],
+  "mark": {"type": "bar", "tooltip": true, "color": "#4682b4"},
+  "encoding": {
+    "x": {"field": "country", "type": "nominal", "sort": "-y", "axis": {"labelAngle": -45}},
+    "y": {"field": "win_pct", "type": "quantitative", "axis": {"format": ".0%"}},
+    "tooltip": [
+      {"field": "country", "title": "Country"},
+      {"field": "total_wins", "title": "Total Wins"},
+      {"field": "total_played", "title": "Total Matches"},
+      {"field": "win_pct", "title": "Win %", "format": ".1%"}
+    ]
+  }
+}

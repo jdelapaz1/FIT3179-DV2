@@ -1,0 +1,67 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Heatmap of retirements/walkovers by month and year.",
+  "autosize": {"type": "fit", "contains": "padding"},
+  "width": "container",
+  "height": "container",
+
+  "data": {
+    "url": "Tournaments_Winner_Years_Continent.csv",
+    "format": {
+      "type": "csv",
+      "parse": { "tourney_date": "date:%Y%m%d" }  
+    }
+  },
+
+  "transform": [
+    { "calculate": "test(/W\\/O|RET/i, datum.score) ? 1 : 0", "as": "is_ret" },
+
+
+    { "timeUnit": "year",  "field": "tourney_date", "as": "year" },
+    { "timeUnit": "month", "field": "tourney_date", "as": "month" },
+
+    {
+      "aggregate": [{ "op": "sum", "field": "is_ret", "as": "retirements" }],
+      "groupby": ["year", "month"]
+    }
+  ],
+
+  "mark": "rect",
+
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "temporal",
+      "timeUnit": "year",
+      "title": "Year",
+      "axis": { "format": "%Y" },
+      "sort": "ascending"
+    },
+    "y": {
+      "field": "month",
+      "type": "temporal",
+      "timeUnit": "month",
+      "title": "Month",
+      "axis": { "format": "%b" },                   
+      "sort": {"op": "min", "field": "month"}       
+    },
+    "color": {
+      "field": "retirements",
+      "type": "quantitative",
+      "title": "Retirements / Walkovers",
+      "scale": { "scheme": "browns" }
+    },
+    "tooltip": [
+      { "field": "month", "type": "temporal", "timeUnit": "month", "title": "Month", "format": "%B" },
+      { "field": "year",  "type": "temporal", "timeUnit": "year",  "title": "Year",  "format": "%Y" },
+      { "field": "retirements", "type": "quantitative", "title": "Retirements/Walkovers" }
+    ]
+  },
+
+  "title": {"text": "Retirements and Walkovers by Month and Year", "dy": -20},
+  "config": {
+    "axis": { "grid": true, "tickBand": "extent" },
+    "view": { "stroke": null },
+    "background": "white"
+  }
+}

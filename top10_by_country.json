@@ -1,0 +1,77 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Number of players per country who have reached a career-high ranking inside the Top 10.",
+  "title": {
+    "text": "Number of Players That Reached A Top 10 Ranking",
+    "dy": -20
+  },
+  "autosize": { "type": "fit", "contains": "padding" },
+  "width": "container",
+  "height": "container",
+  "data": {
+    "url": "Players_joined_with_country_latitude_longitude.csv",
+    "format": { "type": "csv" }
+  },
+  "transform": [
+    { "filter": "datum.high_rank <= 10" },
+    {
+      "aggregate": [{ "op": "count", "as": "Top10Players" }],
+      "groupby": ["country"]
+    },
+    {
+      "calculate": "datum.Top10Players <= 3 ? 'Other' : datum.country",
+      "as": "country_grouped"
+    },
+    {
+      "aggregate": [{ "op": "sum", "field": "Top10Players", "as": "Top10Players" }],
+      "groupby": ["country_grouped"]
+    },
+    { "filter": "datum.country_grouped != null" },
+    { "filter": "datum.country_grouped != 'Other'" },
+    {
+      "window": [{ "op": "rank", "as": "rank" }],
+      "sort": [{ "field": "Top10Players", "order": "descending" }]
+    },
+    { "filter": "datum.rank <= 15" }
+  ],
+
+  "layer": [
+  {
+    "mark": { "type": "arc", "innerRadius": 40, "stroke": "#fff" },
+    "encoding": {
+      "theta": { "field": "Top10Players", "type": "quantitative", "stack": true },
+      "radius": {
+        "field": "Top10Players",
+        "type": "quantitative",
+        "scale": { "type": "sqrt", "zero": true, "rangeMin": 40 }
+      },
+      "color": { "field": "country_grouped", "type": "nominal", "title": "Country" },
+      "order": { "field": "rank", "type": "quantitative" }   
+    }
+  },
+  {
+    "mark": {
+      "type": "text",
+      "radiusOffset": 10,
+      "fontSize": 12,
+      "fontWeight": "bold",
+      "align": "center",
+      "baseline": "middle"
+    },
+    "encoding": {
+      "theta": { "field": "Top10Players", "type": "quantitative", "stack": true },
+      "radius": {
+        "field": "Top10Players",
+        "type": "quantitative",
+        "scale": { "type": "sqrt", "zero": true, "rangeMin": 40 }
+      },
+      "text": { "field": "Top10Players", "type": "quantitative" },
+      "color": { "value": "black" },
+      "order": { "field": "rank", "type": "quantitative" }  
+    }
+  }
+],
+
+  "view": { "stroke": null },
+  "config": { "background": "white" }
+}

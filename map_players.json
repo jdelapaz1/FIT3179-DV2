@@ -1,0 +1,71 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Number of professional tennis players by country",
+  "width": "container",
+  "height": 520,
+  "title": "Global Distribution Of Tennis Players",
+  "padding": {"left": 0, "top": 0, "right": 0, "bottom": 0},
+  "projection": {"type": "equirectangular"},
+  "config": { "view": {"stroke": null}, "legend": {"titleFontSize": 12, "labelFontSize": 11} },
+  "layer": [
+    {
+      "data": {
+        "url": "https://vega.github.io/vega-datasets/data/world-110m.json",
+        "format": {"type": "topojson", "feature": "countries"}
+      },
+      "mark": {"type": "geoshape", "fill": "#efefef", "stroke": "#bdbdbd", "strokeWidth": 0.5}
+    },
+    {
+      "data": {"graticule": {"step": [15, 15]}},
+      "mark": {"type": "geoshape", "stroke": "#dfe5e9", "strokeWidth": 0.6, "fill": null}
+    },
+    {
+      "data": { "url": "Players_joined_with_country_latitude_longitude.csv", "format": {"type":"csv"} },
+      "transform": [
+        {"filter": "isValid(datum['Numeric code'])"},
+        {
+          "aggregate": [
+            {"op": "count", "as": "players"},
+            {"op": "max", "field": "country", "as": "country_name"},
+            {"op": "max", "field": "Alpha-2 code", "as": "alpha2"}
+          ],
+          "groupby": ["Numeric code"]
+        },
+        { "calculate": "toNumber(trim(datum['Numeric code']))", "as": "id_num" },
+        {
+          "lookup": "id_num",
+          "from": {
+            "data": {
+              "url": "https://vega.github.io/vega-datasets/data/world-110m.json",
+              "format": {"type": "topojson", "feature": "countries"}
+            },
+            "key": "id",
+            "fields": ["type","properties","geometry"]
+          }
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.4},
+      "encoding": {
+        "color": {
+          "field": "players",
+          "type": "quantitative",
+          "title": "Number of Players",
+          "scale": {"scheme": "browns"},
+          "legend": {
+            "orient": "bottom-left",
+            "direction": "horizontal",
+            "titleOrient": "top",
+            "gradientLength": 150,
+            "labelFontSize": 12,
+            "titleFontSize": 13,
+            "offset": 75
+          }
+        },
+        "tooltip": [
+          {"field": "country_name", "title": "Country"},
+          {"field": "players", "type": "quantitative", "title": "Number of Players"}
+        ]
+      }
+    }
+  ]
+}

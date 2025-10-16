@@ -1,0 +1,55 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Vertical diverging bar chart: country avg minutes/set vs global average (single color).",
+  "width": "container",
+  "height": 520,
+  "data": { "url": "Players_joined_with_country_latitude_longitude.csv" },
+  "transform": [
+    { "filter": "isValid(datum.minutes_per_set)" },
+    { "joinaggregate": [{ "op": "mean", "field": "minutes_per_set", "as": "global_avg" }] },
+    {
+      "aggregate": [
+        { "op": "mean", "field": "minutes_per_set", "as": "avg_minutes_per_set" },
+        { "op": "count", "as": "player_count" },
+        { "op": "max", "field": "global_avg", "as": "global_avg" }
+      ],
+      "groupby": ["country"]
+    },
+    { "filter": "datum.player_count > 10" },
+    { "calculate": "datum.avg_minutes_per_set - datum.global_avg", "as": "diff" }
+  ],
+  "layer": [
+    {
+      "mark": { "type": "rule", "stroke": "#9aa0a6" },
+      "encoding": { "x": { "datum": 0 } }
+    },
+    {
+      "mark": { "type": "bar", "color": "#4682b4" },
+      "encoding": {
+        "y": {
+          "field": "country",
+          "type": "nominal",
+          "sort": { "field": "diff", "order": "descending" },
+          "axis": { "title": null }
+        },
+        "x": {
+          "field": "diff",
+          "type": "quantitative",
+          "axis": { "title": "Minutes vs global average", "format": "+.2f" },
+          "scale": { "zero": true }
+        },
+        "tooltip": [
+          { "field": "country", "title": "Country" },
+          { "field": "avg_minutes_per_set", "title": "Country avg (min)", "format": ".2f" },
+          { "field": "global_avg", "title": "Global avg (min)", "format": ".2f" },
+          { "field": "diff", "title": "Δ vs global (min)", "format": "+.2f" },
+          { "field": "player_count", "title": "Players" }
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": { "stroke": null },
+    "axis": { "labelFontSize": 12, "titleFontSize": 13 }
+  }
+}

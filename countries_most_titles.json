@@ -1,0 +1,66 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Total titles won by country (only countries with ≥ 30 titles) with highlight-on-hover and select-on-click.",
+  "width": "container",
+  "height": 520,
+
+  "data": { "url": "Players_joined_with_country_latitude_longitude.csv" },
+
+  "transform": [
+    {
+      "aggregate": [
+        {"op": "sum", "field": "titles", "as": "total_titles"}
+      ],
+      "groupby": ["country"]
+    },
+    {"filter": "datum.total_titles >= 30"}
+  ],
+
+  "params": [
+    { "name": "highlight", "select": { "type": "point", "on": "pointerover" } },
+    { "name": "select", "select": "point" }
+  ],
+
+  "mark": {
+    "type": "bar",
+    "tooltip": true,
+    "fill": "#B7AAA0",
+    "stroke": "black"
+  },
+
+  "encoding": {
+    "x": {
+      "field": "country",
+      "type": "nominal",
+      "sort": "-y",
+      "title": "Country",
+      "axis": { "labelAngle": -45 }
+    },
+    "y": {
+      "field": "total_titles",
+      "type": "quantitative",
+      "title": "Titles Won"
+    },
+    "fillOpacity": {
+      "condition": { "param": "select", "value": 1 },
+      "value": 0.3
+    },
+    "strokeWidth": {
+      "condition": [
+        { "param": "select", "empty": false, "value": 2 },
+        { "param": "highlight", "empty": false, "value": 1 }
+      ],
+      "value": 0
+    },
+    "tooltip": [
+      { "field": "country", "title": "Country" },
+      { "field": "total_titles", "title": "Total Titles Won" }
+    ]
+  },
+
+  "config": {
+    "view": { "stroke": null },
+    "axis": { "labelFontSize": 12, "titleFontSize": 13 },
+    "scale": { "bandPaddingInner": 0.2 }
+  }
+}
