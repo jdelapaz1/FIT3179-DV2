@@ -45,7 +45,7 @@
       "field": "Country",
       "type": "nominal",
       "sort": "-y",
-      "axis": {"title": "Country", "labelAngle": -45}
+      "axis": {"title": "Country", "labelAngle": -90}
     },
     "y": {
       "field": "titles_won",

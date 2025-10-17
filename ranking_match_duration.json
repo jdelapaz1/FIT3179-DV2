@@ -37,7 +37,7 @@
   "mark": {"type": "line", "point": true},
 
   "encoding": {
-    "x": {"field": "year", "type": "ordinal", "title": "Year"},
+    "x": {"field": "year", "type": "ordinal", "title": "Year", "axis": {"labelAngle": 0}},
     "y": {
       "field": "rank",
       "type": "quantitative",

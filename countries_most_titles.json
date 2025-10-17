@@ -34,7 +34,7 @@
       "type": "nominal",
       "sort": "-y",
       "title": "Country",
-      "axis": { "labelAngle": -45 }
+      "axis": { "labelAngle": 90 }
     },
     "y": {
       "field": "total_titles",
